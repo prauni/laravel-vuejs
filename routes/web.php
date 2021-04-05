@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('{any}', function () {
+    return view('app');
+})->where('any', '.*');
+
+
 /*Route::get('/', function () {
     return view('welcome');
 });
@@ -26,17 +32,11 @@ Route::get('/product', function () {
     return view('app');
 });
 
-
-Route::get('{any}', function () {
-    return view('app');
-})->where('any', '.*');
-
-
 Route::get('{any}', function () {
     return view('app');
 })->where('any','');
 
-*/
+
 Route::get(['category','product'], function () {
     return view('app');
 });
@@ -62,4 +62,4 @@ Route::get('/404', function () {
 
 Route::get('/test', function () {
     return view('welcome');
-})->middleware(EnsureTokenIsValid::class);;
+})->middleware(EnsureTokenIsValid::class);;*/

@@ -1218,7 +1218,7 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_vm._v("Delete")]
+                              [_vm._v("Delete Item")]
                             )
                           ],
                           1
@@ -1301,7 +1301,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("td", { attrs: { colspan: "4", align: "center" } }, [
+      _c("td", { attrs: { colspan: "5", align: "center" } }, [
         _vm._v("No Products Found.")
       ])
     ])

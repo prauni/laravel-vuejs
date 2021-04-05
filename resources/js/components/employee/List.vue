@@ -1,9 +1,16 @@
 <template>
     <div class="row">
+		<h3>Modal </h3>
 		<div class="col-12">
+			<button class="delete-btn" @click="doDelete">Delete Page</button>
+			<confirm-dialogue ref="confirmDialogue"></confirm-dialogue>
+		</div>	
+		<hr />
+        <div class="col-12">
 			<Testcomponent   v-bind:salary="salary" v-bind:cntst="cntst" v-on:child-method="updateParent" />
 		</div>	
-        <div class="col-12">
+        
+		<div class="col-12">
             <div class="card">
 				<div class="card-header">
                     <h4>
@@ -70,13 +77,15 @@ import Categorycomponent from "../category/List.vue";
 import Testcomponent from "../Testcomponent.vue";
 //Vue.component('Testcomponent', Testcomponent);
 
+import ConfirmDialogue from './ConfirmDialogue.vue'
+
 
 
 
 export default {
     name:"employees",
 	components: {
-		Categorycomponent, Testcomponent
+		Categorycomponent, Testcomponent, ConfirmDialogue 
 	},
     data(){
 		let rand = parseInt(Math.random()*100);
@@ -91,7 +100,20 @@ export default {
         this.getEmployees()
     },
     methods:{
-        async getEmployees(){
+        async doDelete() {
+            const ok = await this.$refs.confirmDialogue.show({
+                title: 'Delete Page',
+                message: 'Are you sure you want to delete this page? It cannot be undone.',
+                okButton: 'Delete Forever',
+            })
+            // If you throw an error, the method will terminate here unless you surround it wil try/catch
+            if (ok) {
+                alert('You have successfully delete this page.')
+            } else {
+                alert('You chose not to delete this page. Doing nothing now.')
+            }
+        },
+		async getEmployees(){
             await this.axios.get('/api/employee').then(response=>{
                 this.employees = response.data
             }).catch(error=>{
@@ -119,3 +141,16 @@ export default {
     }
 }
 </script>
+<style scoped>
+.delete-btn {
+    padding: 0.5em 1em;
+    background-color: #eccfc9;
+    color: #c5391a;
+    border: 2px solid #ea3f1b;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+</style>

@@ -73,13 +73,14 @@
                                     <td>{{ product.description }}</td>
                                     <td>
                                         <router-link :to='{name:"productEdit",params:{id:product.id}}' class="btn btn-success">Edit</router-link>
-                                        <button type="button" @click="deleteProduct(product.id)" class="btn btn-danger">Delete</button>
+                                        <button type="button" @click="deleteProduct(product.id)" class="btn btn-danger">Delete Item</button>
+										
                                     </td>
                                 </tr>
                             </tbody>
                             <tbody v-else>
                                 <tr>
-                                    <td colspan="4" align="center">No Products Found.</td>
+                                    <td colspan="5" align="center">No Products Found.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -89,15 +90,13 @@
         </div>						
     </div>
 </template>
-
 <script>
 export default {
-    name:"products",
+    name:"products",	
     data(){
         return {
             products:[],
-			categories:[]
-        }
+			categories:[]        }
     },
     mounted(){
         this.getProduct(),
