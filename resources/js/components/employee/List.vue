@@ -52,7 +52,7 @@
                                         <router-link :to='{name:"employeeEdit",params:{id:employee.id}}' class="btn btn-success">Edit</router-link>
                                         <button type="button" @click="deleteEmployee(employee.id)" class="btn btn-danger">Delete</button>
                                     </td>
-                                </tr>
+                                </tr>									
                             </tbody>
                             <tbody v-else>
                                 <tr>
@@ -60,6 +60,7 @@
                                 </tr>
                             </tbody>
                         </table>
+						<Emplist v-bind:employees="employees" />
                     </div>
                 </div>
             </div>
@@ -78,6 +79,7 @@ import Testcomponent from "../Testcomponent.vue";
 //Vue.component('Testcomponent', Testcomponent);
 
 import ConfirmDialogue from './ConfirmDialogue.vue'
+import Emplist from './Emplist.vue'
 
 
 
@@ -85,7 +87,7 @@ import ConfirmDialogue from './ConfirmDialogue.vue'
 export default {
     name:"employees",
 	components: {
-		Categorycomponent, Testcomponent, ConfirmDialogue 
+		Categorycomponent, Testcomponent, ConfirmDialogue, Emplist 
 	},
     data(){
 		let rand = parseInt(Math.random()*100);
